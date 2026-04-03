@@ -1,27 +1,33 @@
 {
   "expo": {
-    "name": "musica-tercera-edad",
+    "name": "MUSIC+",
     "slug": "musica-tercera-edad",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0d0d1a"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.lisandro1313.musicplus",
+      "infoPlist": {
+        "NSSpeechRecognitionUsageDescription": "Usamos el micrófono para buscar música por voz.",
+        "NSMicrophoneUsageDescription": "Usamos el micrófono para buscar música por voz."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#0d0d1a"
       },
-      "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "package": "com.lisandro1313.musicplus",
+      "permissions": ["RECORD_AUDIO"],
+      "edgeToEdgeEnabled": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
