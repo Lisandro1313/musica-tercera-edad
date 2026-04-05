@@ -40,7 +40,7 @@ export default function ReproductorBar({ reproductor }: Props) {
     <>
       <View style={styles.container}>
         <View style={styles.barraContainer}>
-          <View style={[styles.barra, { width: `${pct}%` as any }]} />
+          <View style={[styles.barra, { width: `${pct}%` as `${number}%` }]} />
         </View>
 
         <View style={styles.contenido}>

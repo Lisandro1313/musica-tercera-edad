@@ -58,16 +58,16 @@ export async function getArchivosMp3(identifier: string): Promise<string | null>
     const url = `https://archive.org/metadata/${identifier}`;
     const res = await fetch(url);
     const data = await res.json();
-    const archivos: any[] = data?.files ?? [];
+    const archivos: { name?: string; format?: string }[] = data?.files ?? [];
     const mp3 = archivos.find(
       f => f.name?.endsWith('.mp3') && f.format?.toLowerCase().includes('mp3')
     );
-    if (mp3) return `https://archive.org/download/${identifier}/${encodeURIComponent(mp3.name)}`;
+    if (mp3?.name) return `https://archive.org/download/${identifier}/${encodeURIComponent(mp3.name)}`;
     // Fallback: primer archivo de audio
     const audio = archivos.find(f =>
       f.name?.match(/\.(mp3|ogg|flac|wav|m4a)$/i)
     );
-    if (audio) return `https://archive.org/download/${identifier}/${encodeURIComponent(audio.name)}`;
+    if (audio?.name) return `https://archive.org/download/${identifier}/${encodeURIComponent(audio.name)}`;
     return null;
   } catch {
     return null;
@@ -81,7 +81,7 @@ function limpiarTitulo(titulo: string): string {
     .slice(0, 50);
 }
 
-function formatearDuracion(seg: any): string {
+function formatearDuracion(seg: string | number | null | undefined): string {
   if (!seg) return '--:--';
   const n = typeof seg === 'string' ? parseFloat(seg) : seg;
   if (isNaN(n)) return '--:--';
